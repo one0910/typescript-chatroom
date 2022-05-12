@@ -1,0 +1,27 @@
+import webpack from "webpack";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import express,{ Express } from "express";
+import path from "path";
+
+export default function (app: Express) {
+  const config = require("../../webpack.config.js");
+  const compiler = webpack(config);
+
+  app.get("/main", function (req, res, next) {
+    res.redirect("/main/main.html");
+  });
+
+  app.get("/chatRoom", function (req, res, next) {
+    res.redirect("/chatRoom/chatRoom.html");
+  });
+
+  app.use(
+    webpackDevMiddleware(compiler, {
+      publicPath: config.output.publicPath,
+    })
+  );
+}
+
+// server start
+// middleware -> webpack編輯被啟動
+// listen 
