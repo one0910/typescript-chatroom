@@ -65,7 +65,7 @@ io.on('connection',(socket)=>{
 })
 
 // 執行npm run dev本地開發 or 執行npm run start部署後啟動線上伺服器
-console.log(process.env);
+// console.log(process.env);
 if (process.env.NODE_ENV === "development") {
   devServer(app);
 } else {
